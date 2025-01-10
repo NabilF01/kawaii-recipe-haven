@@ -2,7 +2,12 @@ import { Cake, Search } from "lucide-react";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 
-const Header = () => {
+interface HeaderProps {
+  onSearch: (query: string) => void;
+  onIngredientsChange: (ingredients: string[]) => void;
+}
+
+const Header = ({ onSearch, onIngredientsChange }: HeaderProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
@@ -21,7 +26,13 @@ const Header = () => {
               <Search className="w-6 h-6 text-pink-500" />
             </button>
           )}
-          {isSearchOpen && <SearchBar onClose={() => setIsSearchOpen(false)} />}
+          {isSearchOpen && (
+            <SearchBar 
+              onClose={() => setIsSearchOpen(false)}
+              onSearch={onSearch}
+              onIngredientsChange={onIngredientsChange}
+            />
+          )}
         </div>
       </div>
     </header>

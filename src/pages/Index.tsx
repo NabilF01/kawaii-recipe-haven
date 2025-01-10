@@ -3,7 +3,6 @@ import { useState } from "react";
 import CategoryButton from "@/components/CategoryButton";
 import Header from "@/components/Header";
 import RecipeCard from "@/components/RecipeCard";
-import SearchBar from "@/components/SearchBar";
 
 const CATEGORIES = [
   { icon: Cake, label: "Desserts" },
@@ -48,7 +47,6 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("Desserts");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const filteredRecipes = RECIPES.filter(recipe => {
     // Filtre par catégorie
@@ -75,17 +73,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-kawaii-peach to-white">
-      <Header onSearchClick={() => setIsSearchOpen(true)} />
-      
-      {isSearchOpen && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-start justify-center pt-20">
-          <SearchBar 
-            onClose={() => setIsSearchOpen(false)}
-            onSearch={setSearchQuery}
-            onIngredientsChange={setSelectedIngredients}
-          />
-        </div>
-      )}
+      <Header 
+        onSearch={setSearchQuery}
+        onIngredientsChange={setSelectedIngredients}
+      />
       
       <main className="container mx-auto px-4 py-8">
         <div className="flex gap-4 overflow-x-auto pb-4 mb-8">
