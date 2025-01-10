@@ -41,6 +41,34 @@ const RECIPES = [
     imageUrl: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=60",
     ingredients: ["riz", "poulet", "légumes", "nori"]
   },
+  {
+    title: "Smoothie Arc-en-ciel",
+    time: "15 min",
+    difficulty: "Facile",
+    imageUrl: "https://images.unsplash.com/photo-1502741384106-56538427cde9?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["fruits rouges", "banane", "lait", "miel"]
+  },
+  {
+    title: "Sushi Chat",
+    time: "45 min",
+    difficulty: "Moyen",
+    imageUrl: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["riz", "saumon", "avocat", "nori"]
+  },
+  {
+    title: "Cupcakes Licorne",
+    time: "50 min",
+    difficulty: "Moyen",
+    imageUrl: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["farine", "sucre", "beurre", "colorants"]
+  },
+  {
+    title: "Dorayaki Kawaii",
+    time: "40 min",
+    difficulty: "Moyen",
+    imageUrl: "https://images.unsplash.com/photo-1505253468034-514d2507d914?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["farine", "oeufs", "anko", "miel"]
+  }
 ];
 
 const Index = () => {
@@ -50,9 +78,10 @@ const Index = () => {
 
   const filteredRecipes = RECIPES.filter(recipe => {
     // Filtre par catégorie
-    if (selectedCategory === "Desserts" && !recipe.title.includes("Pancakes") && !recipe.title.includes("Cookies")) return false;
-    if (selectedCategory === "Plats" && !recipe.title.includes("Bento")) return false;
+    if (selectedCategory === "Desserts" && !recipe.title.includes("Pancakes") && !recipe.title.includes("Cookies") && !recipe.title.includes("Cupcakes") && !recipe.title.includes("Dorayaki")) return false;
+    if (selectedCategory === "Plats" && !recipe.title.includes("Bento") && !recipe.title.includes("Sushi")) return false;
     if (selectedCategory === "Snacks" && !recipe.title.includes("Onigiri")) return false;
+    if (selectedCategory === "Boissons" && !recipe.title.includes("Smoothie")) return false;
 
     // Filtre par texte de recherche
     if (searchQuery && !recipe.title.toLowerCase().includes(searchQuery.toLowerCase())) {
