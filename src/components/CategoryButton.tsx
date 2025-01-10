@@ -18,11 +18,11 @@ const CategoryButton = ({
       onClick={onClick}
       className={`flex flex-col items-center gap-1 p-3 rounded-xl transition-all hover:scale-105 ${
         isSelected
-          ? "bg-kawaii-pink text-pink-600"
+          ? "bg-kawaii-pink text-pink-600 animate-bounce-slight"
           : "bg-white text-gray-600 hover:bg-kawaii-peach"
       }`}
     >
-      <Icon className="w-6 h-6" />
+      <Icon className={`w-6 h-6 ${isSelected ? "animate-wiggle" : ""}`} />
       <span className="text-sm">{label}</span>
     </button>
   );

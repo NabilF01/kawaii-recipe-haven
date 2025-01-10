@@ -12,7 +12,7 @@ const RecipeCard = ({ title, time, difficulty, imageUrl }: RecipeCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 animate-scale-up">
       <div className="relative h-48">
         <img
           src={imageUrl}
@@ -21,11 +21,11 @@ const RecipeCard = ({ title, time, difficulty, imageUrl }: RecipeCardProps) => {
         />
         <button
           onClick={() => setIsLiked(!isLiked)}
-          className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors"
+          className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors hover:scale-110 transform duration-200"
         >
           <Heart
-            className={`w-5 h-5 ${
-              isLiked ? "fill-pink-500 text-pink-500" : "text-gray-500"
+            className={`w-5 h-5 transition-colors duration-300 ${
+              isLiked ? "fill-pink-500 text-pink-500 animate-wiggle" : "text-gray-500"
             }`}
           />
         </button>
