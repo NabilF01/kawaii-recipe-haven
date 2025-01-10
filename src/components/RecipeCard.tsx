@@ -6,9 +6,10 @@ interface RecipeCardProps {
   time: string;
   difficulty: string;
   imageUrl: string;
+  ingredients: string[];
 }
 
-const RecipeCard = ({ title, time, difficulty, imageUrl }: RecipeCardProps) => {
+const RecipeCard = ({ title, time, difficulty, imageUrl, ingredients }: RecipeCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
@@ -32,9 +33,19 @@ const RecipeCard = ({ title, time, difficulty, imageUrl }: RecipeCardProps) => {
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-lg mb-2">{title}</h3>
-        <div className="flex justify-between text-sm text-gray-500">
+        <div className="flex justify-between text-sm text-gray-500 mb-2">
           <span>{time}</span>
           <span>{difficulty}</span>
+        </div>
+        <div className="flex flex-wrap gap-1">
+          {ingredients.map((ingredient) => (
+            <span
+              key={ingredient}
+              className="text-xs bg-pink-50 text-pink-600 px-2 py-1 rounded-full"
+            >
+              {ingredient}
+            </span>
+          ))}
         </div>
       </div>
     </div>

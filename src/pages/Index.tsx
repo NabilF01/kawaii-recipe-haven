@@ -18,24 +18,28 @@ const RECIPES = [
     time: "20 min",
     difficulty: "Facile",
     imageUrl: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["farine", "oeufs", "lait", "sucre"]
   },
   {
     title: "Onigiri Mignons",
     time: "30 min",
     difficulty: "Moyen",
     imageUrl: "https://images.unsplash.com/photo-1595456982104-14cc660c4d22?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["riz", "nori", "saumon", "sel"]
   },
   {
     title: "Cookies Panda",
     time: "45 min",
     difficulty: "Facile",
     imageUrl: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["farine", "sucre", "beurre", "chocolat"]
   },
   {
     title: "Bento Décoré",
     time: "60 min",
     difficulty: "Difficile",
     imageUrl: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=60",
+    ingredients: ["riz", "poulet", "légumes", "nori"]
   },
 ];
 
