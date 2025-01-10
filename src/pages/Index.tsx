@@ -3,6 +3,7 @@ import { useState } from "react";
 import CategoryButton from "@/components/CategoryButton";
 import Header from "@/components/Header";
 import RecipeCard from "@/components/RecipeCard";
+import SearchBar from "@/components/SearchBar";
 
 const CATEGORIES = [
   { icon: Cake, label: "Desserts" },
@@ -45,10 +46,46 @@ const RECIPES = [
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("Desserts");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const filteredRecipes = RECIPES.filter(recipe => {
+    // Filtre par catégorie
+    if (selectedCategory === "Desserts" && !recipe.title.includes("Pancakes") && !recipe.title.includes("Cookies")) return false;
+    if (selectedCategory === "Plats" && !recipe.title.includes("Bento")) return false;
+    if (selectedCategory === "Snacks" && !recipe.title.includes("Onigiri")) return false;
+
+    // Filtre par texte de recherche
+    if (searchQuery && !recipe.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false;
+    }
+
+    // Filtre par ingrédients sélectionnés
+    if (selectedIngredients.length > 0) {
+      return selectedIngredients.every(ingredient =>
+        recipe.ingredients.some(recipeIngredient =>
+          recipeIngredient.toLowerCase().includes(ingredient.toLowerCase())
+        )
+      );
+    }
+
+    return true;
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-kawaii-peach to-white">
-      <Header />
+      <Header onSearchClick={() => setIsSearchOpen(true)} />
+      
+      {isSearchOpen && (
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-start justify-center pt-20">
+          <SearchBar 
+            onClose={() => setIsSearchOpen(false)}
+            onSearch={setSearchQuery}
+            onIngredientsChange={setSelectedIngredients}
+          />
+        </div>
+      )}
       
       <main className="container mx-auto px-4 py-8">
         <div className="flex gap-4 overflow-x-auto pb-4 mb-8">
@@ -64,10 +101,16 @@ const Index = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {RECIPES.map((recipe) => (
+          {filteredRecipes.map((recipe) => (
             <RecipeCard key={recipe.title} {...recipe} />
           ))}
         </div>
+
+        {filteredRecipes.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500">Aucune recette trouvée 😢</p>
+          </div>
+        )}
       </main>
     </div>
   );

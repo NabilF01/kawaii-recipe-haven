@@ -1,15 +1,25 @@
 import { X, Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Badge } from "./ui/badge";
 
 interface SearchBarProps {
   onClose: () => void;
+  onSearch: (query: string) => void;
+  onIngredientsChange: (ingredients: string[]) => void;
 }
 
-const SearchBar = ({ onClose }: SearchBarProps) => {
+const SearchBar = ({ onClose, onSearch, onIngredientsChange }: SearchBarProps) => {
   const [query, setQuery] = useState("");
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [currentIngredient, setCurrentIngredient] = useState("");
+
+  useEffect(() => {
+    onSearch(query);
+  }, [query, onSearch]);
+
+  useEffect(() => {
+    onIngredientsChange(ingredients);
+  }, [ingredients, onIngredientsChange]);
 
   const handleAddIngredient = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && currentIngredient.trim()) {
@@ -25,7 +35,7 @@ const SearchBar = ({ onClose }: SearchBarProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 animate-scale-up">
+    <div className="flex flex-col gap-2 animate-scale-up bg-white p-6 rounded-2xl shadow-lg">
       <div className="flex items-center gap-2">
         <input
           type="text"
