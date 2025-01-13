@@ -16,9 +16,15 @@ const Header = ({ onSearch, onIngredientsChange }: HeaderProps) => {
             🧁 Recettes Kawaii
           </Link>
           
-          <div className="flex-1 max-w-2xl">
-            <SearchBar onSearch={onSearch} onIngredientsChange={onIngredientsChange} />
-          </div>
+          {onSearch && onIngredientsChange && (
+            <div className="flex-1 max-w-2xl">
+              <SearchBar 
+                onSearch={onSearch} 
+                onIngredientsChange={onIngredientsChange}
+                onClose={() => {}} // Fonction vide car la recherche est toujours visible
+              />
+            </div>
+          )}
           
           <Link 
             to="/favorites"
