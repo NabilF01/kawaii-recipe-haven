@@ -1,5 +1,6 @@
 import { Heart } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 interface RecipeCardProps {
   title: string;
@@ -12,6 +13,34 @@ interface RecipeCardProps {
 const RecipeCard = ({ title, time, difficulty, imageUrl, ingredients }: RecipeCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
+  useEffect(() => {
+    // Vérifier si la recette est dans les favoris au chargement
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    setIsLiked(favorites.some((fav: RecipeCardProps) => fav.title === title));
+  }, [title]);
+
+  const handleLike = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    let newFavorites;
+    
+    if (isLiked) {
+      // Retirer des favoris
+      newFavorites = favorites.filter((fav: RecipeCardProps) => fav.title !== title);
+      toast({
+        description: "Recette retirée des favoris 💔",
+      });
+    } else {
+      // Ajouter aux favoris
+      newFavorites = [...favorites, { title, time, difficulty, imageUrl, ingredients }];
+      toast({
+        description: "Recette ajoutée aux favoris 💖",
+      });
+    }
+    
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    setIsLiked(!isLiked);
+  };
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 animate-scale-up">
       <div className="relative h-48">
@@ -21,7 +50,7 @@ const RecipeCard = ({ title, time, difficulty, imageUrl, ingredients }: RecipeCa
           className="w-full h-full object-cover"
         />
         <button
-          onClick={() => setIsLiked(!isLiked)}
+          onClick={handleLike}
           className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors hover:scale-110 transform duration-200"
         >
           <Heart

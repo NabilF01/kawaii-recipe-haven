@@ -1,38 +1,32 @@
-import { Cake, Search } from "lucide-react";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Heart } from "lucide-react";
 import SearchBar from "./SearchBar";
 
 interface HeaderProps {
-  onSearch: (query: string) => void;
-  onIngredientsChange: (ingredients: string[]) => void;
+  onSearch?: (query: string) => void;
+  onIngredientsChange?: (ingredients: string[]) => void;
 }
 
 const Header = ({ onSearch, onIngredientsChange }: HeaderProps) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
   return (
-    <header className="bg-kawaii-pink shadow-md">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Cake className="w-8 h-8 text-pink-500 animate-bounce-slight" />
-          <h1 className="text-2xl font-bold text-pink-600">Kawaii Kitchen</h1>
-        </div>
-        <div className="flex items-center gap-4">
-          {!isSearchOpen && (
-            <button
-              onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:bg-pink-100 rounded-full transition-colors"
-            >
-              <Search className="w-6 h-6 text-pink-500" />
-            </button>
-          )}
-          {isSearchOpen && (
-            <SearchBar 
-              onClose={() => setIsSearchOpen(false)}
-              onSearch={onSearch}
-              onIngredientsChange={onIngredientsChange}
-            />
-          )}
+    <header className="bg-white shadow-sm">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <Link to="/" className="text-2xl font-bold text-pink-500 hover:text-pink-600 transition-colors">
+            🧁 Recettes Kawaii
+          </Link>
+          
+          <div className="flex-1 max-w-2xl">
+            <SearchBar onSearch={onSearch} onIngredientsChange={onIngredientsChange} />
+          </div>
+          
+          <Link 
+            to="/favorites"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 text-pink-500 hover:bg-pink-100 transition-colors"
+          >
+            <Heart className="w-5 h-5" />
+            <span>Favoris</span>
+          </Link>
         </div>
       </div>
     </header>
