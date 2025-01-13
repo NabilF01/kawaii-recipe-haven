@@ -1,10 +1,11 @@
-import { Cake, Coffee, Cookie, Pizza, Salad } from "lucide-react";
+import { Cake, Coffee, Cookie, Pizza, Salad, Menu } from "lucide-react";
 import { useState } from "react";
 import CategoryButton from "@/components/CategoryButton";
 import Header from "@/components/Header";
 import RecipeCard from "@/components/RecipeCard";
 
 const CATEGORIES = [
+  { icon: Menu, label: "Toutes les recettes" },
   { icon: Cake, label: "Desserts" },
   { icon: Pizza, label: "Plats" },
   { icon: Salad, label: "Salades" },
@@ -123,16 +124,18 @@ const RECIPES = [
 ];
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Desserts");
+  const [selectedCategory, setSelectedCategory] = useState("Toutes les recettes");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
 
   const filteredRecipes = RECIPES.filter(recipe => {
-    // Filtre par catégorie
-    if (selectedCategory === "Desserts" && !recipe.title.includes("Pancakes") && !recipe.title.includes("Cookies") && !recipe.title.includes("Cupcakes") && !recipe.title.includes("Dorayaki")) return false;
-    if (selectedCategory === "Plats" && !recipe.title.includes("Bento") && !recipe.title.includes("Sushi")) return false;
-    if (selectedCategory === "Snacks" && !recipe.title.includes("Onigiri")) return false;
-    if (selectedCategory === "Boissons" && !recipe.title.includes("Smoothie")) return false;
+    // Si "Toutes les recettes" est sélectionné, on ne filtre pas par catégorie
+    if (selectedCategory !== "Toutes les recettes") {
+      if (selectedCategory === "Desserts" && !recipe.title.includes("Pancakes") && !recipe.title.includes("Cookies") && !recipe.title.includes("Cupcakes") && !recipe.title.includes("Dorayaki")) return false;
+      if (selectedCategory === "Plats" && !recipe.title.includes("Bento") && !recipe.title.includes("Sushi")) return false;
+      if (selectedCategory === "Snacks" && !recipe.title.includes("Onigiri")) return false;
+      if (selectedCategory === "Boissons" && !recipe.title.includes("Smoothie")) return false;
+    }
 
     // Filtre par texte de recherche
     if (searchQuery && !recipe.title.toLowerCase().includes(searchQuery.toLowerCase())) {
@@ -188,4 +191,3 @@ const Index = () => {
 };
 
 export default Index;
-
