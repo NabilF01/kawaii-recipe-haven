@@ -18,56 +18,107 @@ const RECIPES = [
     time: "20 min",
     difficulty: "Facile",
     imageUrl: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["farine", "oeufs", "lait", "sucre"]
+    ingredients: ["farine", "oeufs", "lait", "sucre"],
+    steps: [
+      "Mélanger la farine, le sucre et la levure",
+      "Ajouter les œufs et le lait progressivement",
+      "Faire chauffer une poêle à feu moyen",
+      "Verser la pâte en petits cercles",
+      "Dessiner des visages kawaii avec du chocolat fondu"
+    ]
   },
   {
     title: "Onigiri Mignons",
     time: "30 min",
     difficulty: "Moyen",
     imageUrl: "https://images.unsplash.com/photo-1595456982104-14cc660c4d22?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["riz", "nori", "saumon", "sel"]
+    ingredients: ["riz", "nori", "saumon", "sel"],
+    steps: [
+      "Cuire le riz selon les instructions",
+      "Former des triangles avec le riz",
+      "Ajouter le saumon au centre",
+      "Envelopper partiellement de nori",
+      "Créer des visages avec des morceaux de nori"
+    ]
   },
   {
     title: "Cookies Panda",
     time: "45 min",
     difficulty: "Facile",
     imageUrl: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["farine", "sucre", "beurre", "chocolat"]
+    ingredients: ["farine", "sucre", "beurre", "chocolat"],
+    steps: [
+      "Préparer la pâte à cookies",
+      "Former des cercles pour les têtes",
+      "Ajouter des oreilles en pâte",
+      "Cuire à 180°C pendant 12-15 minutes",
+      "Décorer avec du chocolat fondu pour les visages"
+    ]
   },
   {
     title: "Bento Décoré",
     time: "60 min",
     difficulty: "Difficile",
     imageUrl: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["riz", "poulet", "légumes", "nori"]
+    ingredients: ["riz", "poulet", "légumes", "nori"],
+    steps: [
+      "Cuire le riz et le colorer si désiré",
+      "Préparer les accompagnements",
+      "Arranger le riz en formes mignonnes",
+      "Ajouter les décorations en nori",
+      "Disposer harmonieusement les légumes"
+    ]
   },
   {
     title: "Smoothie Arc-en-ciel",
     time: "15 min",
     difficulty: "Facile",
     imageUrl: "https://images.unsplash.com/photo-1502741384106-56538427cde9?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["fruits rouges", "banane", "lait", "miel"]
+    ingredients: ["fruits rouges", "banane", "lait", "miel"],
+    steps: [
+      "Mixer tous les ingrédients jusqu'à obtenir une consistance lisse",
+      "Servir frais dans un verre",
+      "Décorer avec des fruits supplémentaires si désiré"
+    ]
   },
   {
     title: "Sushi Chat",
     time: "45 min",
     difficulty: "Moyen",
     imageUrl: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["riz", "saumon", "avocat", "nori"]
+    ingredients: ["riz", "saumon", "avocat", "nori"],
+    steps: [
+      "Cuire le riz à sushi",
+      "Couper le saumon et l'avocat en tranches",
+      "Rouler le riz avec le nori et les garnitures",
+      "Couper en morceaux et servir avec de la sauce soja"
+    ]
   },
   {
     title: "Cupcakes Licorne",
     time: "50 min",
     difficulty: "Moyen",
     imageUrl: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["farine", "sucre", "beurre", "colorants"]
+    ingredients: ["farine", "sucre", "beurre", "colorants"],
+    steps: [
+      "Préparer la pâte à cupcakes",
+      "Diviser la pâte et colorer avec des colorants",
+      "Verser dans des moules et cuire",
+      "Décorer avec du glaçage et des paillettes comestibles"
+    ]
   },
   {
     title: "Dorayaki Kawaii",
     time: "40 min",
     difficulty: "Moyen",
     imageUrl: "https://images.unsplash.com/photo-1505253468034-514d2507d914?w=800&auto=format&fit=crop&q=60",
-    ingredients: ["farine", "oeufs", "anko", "miel"]
+    ingredients: ["farine", "oeufs", "anko", "miel"],
+    steps: [
+      "Préparer la pâte à dorayaki",
+      "Cuire des petites crêpes",
+      "Garnir de pâte de haricots rouges",
+      "Refermer et servir"
+    ]
   }
 ];
 
